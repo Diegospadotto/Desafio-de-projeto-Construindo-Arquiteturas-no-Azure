@@ -1,0 +1,23 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '8.x'
+
+  - script: |
+      dotnet restore
+      dotnet build --configuration Release
+      dotnet publish -c Release -o $(Build.ArtifactStagingDirectory)
+    displayName: 'Build and Publish'
+
+  - task: AzureWebApp@1
+    inputs:
+      azureSubscription: 'MinhaConexaoAzure'
+      appName: 'EcommerceAzureApp'
+      package: '$(Build.ArtifactStagingDirectory)'
