@@ -1,0 +1,3 @@
+npx create-vite@latest ecommerce-react --template react
+cd ecommerce-react
+npm install axios react-router-dom
