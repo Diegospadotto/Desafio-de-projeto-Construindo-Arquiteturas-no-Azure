@@ -1,0 +1,33 @@
+using Ecommerce.Application.Interfaces;
+using Ecommerce.Domain.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace Ecommerce.API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProdutosController : ControllerBase
+    {
+        private readonly IProdutoRepository _produtoRepository;
+
+        public ProdutosController(IProdutoRepository produtoRepository)
+        {
+            _produtoRepository = produtoRepository;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Produto>>> Get()
+        {
+            return Ok(await _produtoRepository.GetProdutosAsync());
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Post([FromBody] Produto produto)
+        {
+            await _produtoRepository.AddProdutoAsync(produto);
+            return CreatedAtAction(nameof(Get), new { id = produto.Id }, produto);
+        }
+    }
+}
