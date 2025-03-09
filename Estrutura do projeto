@@ -1,0 +1,14 @@
+EcommerceAzureSolution/
+│── Backend/
+│   ├── Ecommerce.API/             # Projeto principal da API
+│   ├── Ecommerce.Application/     # Regras de negócio (casos de uso)
+│   ├── Ecommerce.Domain/          # Modelos e interfaces
+│   ├── Ecommerce.Infrastructure/  # Acesso a dados e serviços externos
+│   ├── Ecommerce.Tests/           # Testes unitários
+│── Frontend/
+│   ├── ecommerce-react/           # Aplicação React.js
+│── DevOps/
+│   ├── azure-pipelines.yml        # CI/CD no Azure DevOps
+│   ├── terraform/                 # Infraestrutura como código
+│── docker-compose.yml             # Configuração Docker
+│── README.md                      # Documentação
